@@ -1,0 +1,49 @@
+void setup(){
+  Serial.begin(9600);
+  pinMode(2,INPUT);
+  pinMode(13,OUTPUT);
+  pinMode(12,OUTPUT);
+
+}
+void loop(){
+ int motion=digitalRead(2);
+  Serial.print("Position is:");
+  Serial.println(motion);
+  double a=analogRead(A2);
+  Serial.print("ADC Value: ");
+  Serial.println(a);
+  double v=a/1024;
+  double tv=v*5;
+  Serial.print("Temp. in Voltage:");
+  Serial.println(tv);
+  double o=tv-0.5;
+  double t=o*100;
+  Serial.print("Temperature:");
+  Serial.println(t);
+  if(t>40)
+  {
+    digitalWrite(13, HIGH);
+  }
+   else
+  {
+    digitalWrite(13,LOW);
+  }
+
+  if(motion==1){
+   
+  digitalWrite(13,HIGH);
+  Serial.println("LED is glowing");
+  tone(12,100);
+   
+  
+ 
+  }
+  
+  else
+  {
+  
+  digitalWrite(13,LOW);
+  Serial.println("LED is OFF");
+  }  
+}
+  
